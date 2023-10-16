@@ -2,6 +2,8 @@ package steps;
 
 import com.codeborne.selenide.Condition;
 import elements.AutorizationPageElements;
+import hooks.WebHooks;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 
@@ -17,7 +19,8 @@ public class AutorizationPageSteps extends AutorizationPageElements {
         password.shouldBe(Condition.visible).sendKeys(passwordUser);
         buttonEnter.shouldBe(Condition.visible).click();
     }
-@Step("Проверить, что прошла авторизация")
+
+    @Step("Проверить, что прошла авторизация")
     public static void checkAutorization() {
         userOptions.shouldBe(Condition.visible, Duration.ofSeconds(10)).click();
         sleep(2000);

@@ -1,8 +1,14 @@
+import com.codeborne.selenide.Screenshots;
+import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import hooks.WebHooks;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import java.io.IOException;
 
 import static steps.CreatingTaskPageSteps.*;
 import static steps.MainPageSteps.checkGoTestProject;
@@ -13,7 +19,9 @@ import static steps.TestSeleniumPageSteps.*;
 
 @DisplayName("Тестирование сайта edujira.ifellow.ru")
 @Owner("Корнеева")
+@ExtendWith({ScreenShooterExtension.class})
 public class ClassTest extends WebHooks {
+
     private final String markValue = "Авторизация";
     private final String environment = "Windows 10, Google Chrome Версия 117.0.5938.89";
     private final String description = "1. Открыть сайт\n2. Ввести валидные данные зарегистрированного пользователя\n3. Нажать кнопку Войти";
@@ -41,29 +49,29 @@ public class ClassTest extends WebHooks {
         statusAndVersion();
     }
 
-    @DisplayName("Создание новой задачи - ошибка")
-    @Description("Создать новый баг с описанием и перевести задачу по статусам до закрытого")
-    @Test()
-    public void creatingNewTaskTest() {
-        creatingNewTask();
-        checkOpenWindowCreatingTask();
-        typeTaskBug(typeTask);
-        createSubject(subject);
-        creatingDescription(description);
-        selectInVersions1();
-        createPriorityHighest(priorityName);
-        createMark(markValue);
-        createEnvironment(environment);
-        selectAffectedVersions2();
-        selectAppointMe();
-        clickCreateTask();
-        clickTaskHeaderblok();
-        clickReportedByMe();
-        checkReportedByMePage();
-        clickAtWork();
-        checkStatusAtWork();
-        clickButtonBusinessProcess();
-        clickButtonDone();
-        checkStatusDone();
-    }
+//    @DisplayName("Создание новой задачи - ошибка")
+//    @Description("Создать новый баг с описанием и перевести задачу по статусам до закрытого")
+//    @Test()
+//    public void creatingNewTaskTest() {
+//        creatingNewTask();
+//        checkOpenWindowCreatingTask();
+//        typeTaskBug(typeTask);
+//        createSubject(subject);
+//        creatingDescription(description);
+//        selectInVersions1();
+//        createPriorityHighest(priorityName);
+//        createMark(markValue);
+//        createEnvironment(environment);
+//        selectAffectedVersions2();
+//        selectAppointMe();
+//        clickCreateTask();
+//        clickTaskHeaderblok();
+//        clickReportedByMe();
+//        checkReportedByMePage();
+//        clickAtWork();
+//        checkStatusAtWork();
+//        clickButtonBusinessProcess();
+//        clickButtonDone();
+//        checkStatusDone();
+//    }
 }

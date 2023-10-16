@@ -2,6 +2,7 @@ package steps;
 
 import com.codeborne.selenide.Condition;
 import elements.TestSeleniumPageElements;
+import hooks.WebHooks;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 
@@ -13,11 +14,13 @@ public class TestSeleniumPageSteps extends TestSeleniumPageElements {
     public static void goTestSelenium() {
         searchInput.shouldBe(Condition.visible).setValue("TestSelenium");
         testSelenium.shouldBe(Condition.visible).click();
+        WebHooks.takeScreenshot();
     }
 
     @Step("Проверить, что открылась страница задачи ТестСелениума")
     public static void checkTestSeleniumPage() {
         Assertions.assertEquals(checkTestSelenium.shouldBe(Condition.visible).getText(), "TestSelenium");
+        WebHooks.takeScreenshot();
     }
 
     @Step("Проверить статус задачи и привязку в затронутой версии")
@@ -25,5 +28,6 @@ public class TestSeleniumPageSteps extends TestSeleniumPageElements {
         Assertions.assertEquals(status.shouldBe(Condition.visible).getText(), "СДЕЛАТЬ");
         Assertions.assertEquals(version.shouldBe(Condition.visible).getText(), "Version 2.0");
         sleep(5000);
+        WebHooks.takeScreenshot();
     }
 }
