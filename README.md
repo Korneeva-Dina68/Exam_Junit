@@ -1,9 +1,9 @@
 # **Итоговое задание Exam_Junit**
 ##  _Разработать проект автотестов с использованием junit, maven, selenide, allure_
-### В пакете src/test/java/elements вынесены классы с элементами.
-### В пакете src/test/java/steps вынесены классы с шагами, согласно паттерну PageObject.
-### В пакете src/test/java/configuration находятся классы с конфигурациями для аллюр и проперти, которые находятся в папке resources.
-### Класс ClassTest запускает эти тесты.
+#### В пакете src/test/java/elements вынесены классы с элементами.
+#### В пакете src/test/java/steps вынесены классы с шагами, согласно паттерну PageObject.
+#### В пакете src/test/java/configuration находятся классы с конфигурациями для аллюр и проперти, которые находятся в папке resources.
+#### Класс ClassTest запускает эти тесты.
 ##### Задача данного проекта: 
 ###### 1.	Авторизоваться в edujira.ifellow.ru [edujira.ifellow](https://edujira.ifellow.ru/ "https://edujira.ifellow.ru/")
 ###### 2.	Перейти в проект TestProject
