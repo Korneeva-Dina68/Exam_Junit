@@ -3,17 +3,19 @@ package hooks;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
-import io.qameta.allure.Attachment;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import configuration.ConfigAllure;
+import configuration.ConfigProperties;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import properties.ConfigProperties;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static steps.AutorizationPageSteps.autorization;
-import static steps.AutorizationPageSteps.checkAutorization;
+import static steps.AuthorizationPageSteps.authorization;
+import static steps.AuthorizationPageSteps.checkAuthorization;
 
 public class WebHooks {
     @AfterEach
@@ -27,11 +29,11 @@ public class WebHooks {
     void setUp() throws IOException {
         open(ConfigProperties.getProperty("url"));
         getWebDriver().manage().window().maximize();
-        autorization(ConfigProperties.getProperty("login"), ConfigProperties.getProperty("password"));
-        checkAutorization();
-    }
-    @Attachment(value = "Screenshot", type = "image/png")
-    public static byte[] takeScreenshot() {
-        return Selenide.screenshot("Screenshot name").getBytes();
+        String listenerName = "AllureSelenide";
+        if (!(SelenideLogger.hasListener(listenerName)))
+            SelenideLogger.addListener(listenerName,
+                    (new AllureSelenide().screenshots(true).savePageSource(true)));
+        authorization(ConfigProperties.getProperty("login"), ConfigProperties.getProperty("password"));
+        checkAuthorization();
     }
 }
