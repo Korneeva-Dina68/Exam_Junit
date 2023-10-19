@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class ConfigAllure {
     @Contract("_ -> new")
-    @Attachment(value = "Screenshot", type = "image/png")
+    @Attachment(value = "Screenshot {step}", type = "image/png")
     @BeforeEach
     public static byte @NotNull [] takeScreenshot(int step) {
         return Selenide.screenshot("Screenshot " + step).getBytes();
